@@ -80,6 +80,11 @@ const IdeaSchema = new mongoose.Schema({
     unfairAdvantage: {
       type: String
     }
+  },
+  analysisSource: {
+    type: String,
+    enum: ['ai', 'heuristic'],
+    default: 'heuristic'
   }
 }, {
   timestamps: true

@@ -43,7 +43,7 @@ function LandingPage() {
           <div style={{
             width: '100%',
             maxWidth: '500px',
-            marginBottom: '0.5rem',
+            marginBottom: '0.25rem',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center'
@@ -84,15 +84,15 @@ function LandingPage() {
               
               {/* Chart bars - Centered within container */}
               <g transform="translate(0, 0)">
-                <rect x="82" y="160" width="35" height="70" rx="5" fill="#667eea" opacity="0.85" />
-                <rect x="132" y="130" width="35" height="100" rx="5" fill="#667eea" opacity="0.85" />
-                <rect x="182" y="100" width="35" height="130" rx="5" fill="#764ba2" opacity="0.85" />
-                <rect x="232" y="120" width="35" height="110" rx="5" fill="#764ba2" opacity="0.85" />
-                <rect x="282" y="140" width="35" height="90" rx="5" fill="#667eea" opacity="0.85" />
+                <rect x="82.5" y="160" width="35" height="70" rx="5" fill="#667eea" opacity="0.85" />
+                <rect x="132.5" y="130" width="35" height="100" rx="5" fill="#667eea" opacity="0.85" />
+                <rect x="182.5" y="100" width="35" height="130" rx="5" fill="#764ba2" opacity="0.85" />
+                <rect x="232.5" y="120" width="35" height="110" rx="5" fill="#764ba2" opacity="0.85" />
+                <rect x="282.5" y="140" width="35" height="90" rx="5" fill="#667eea" opacity="0.85" />
               </g>
               
               {/* Chart baseline */}
-              <line x1="72" y1="230" x2="327" y2="230" stroke="#475569" strokeWidth="2" opacity="0.4" />
+              <line x1="72.5" y1="230" x2="327.5" y2="230" stroke="#475569" strokeWidth="2" opacity="0.4" />
             </svg>
           </div>
           
@@ -100,8 +100,8 @@ function LandingPage() {
             fontSize: '3rem',
             fontWeight: '700',
             lineHeight: '1.2',
-            marginBottom: '0.75rem',
-            marginTop: '0.5rem',
+            marginBottom: '0.5rem',
+            marginTop: '0.25rem',
             background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
@@ -114,7 +114,7 @@ function LandingPage() {
             fontSize: '1.25rem',
             color: '#cbd5e1',
             lineHeight: '1.8',
-            marginBottom: '0.5rem'
+            marginBottom: '0.375rem'
           }}>
             Girişim fikirlerinizi detaylı analiz edin, skorlarınızı görselleştirin ve gelişim alanlarınızı keşfedin.
           </p>
@@ -122,7 +122,8 @@ function LandingPage() {
           <p style={{
             fontSize: '1.125rem',
             color: '#94a3b8',
-            lineHeight: '1.8'
+            lineHeight: '1.8',
+            marginBottom: '0.5rem'
           }}>
             AI destekli analiz ile fikrinizin güçlü ve zayıf yönlerini objektif bir şekilde değerlendirin.
           </p>
@@ -132,7 +133,7 @@ function LandingPage() {
             border: '1px solid #334155',
             borderRadius: '0.75rem',
             padding: '1.25rem',
-            marginTop: '0.75rem'
+            marginTop: '0.5rem'
           }}>
             <p style={{
               fontSize: '0.875rem',

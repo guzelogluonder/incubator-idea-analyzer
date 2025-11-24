@@ -364,9 +364,16 @@ function MentorDashboardPage() {
                   >
                     <div className="idea-header">
                       <h3>{idea.ideaTitle || 'İsimsiz Fikir'}</h3>
-                      <span className="idea-date">
-                        {new Date(idea.createdAt).toLocaleDateString('tr-TR')}
-                      </span>
+                      <div className="idea-header-right">
+                        {idea.analysisSource && (
+                          <span className={`analysis-badge-small ${idea.analysisSource === 'ai' ? 'ai-badge' : 'heuristic-badge'}`}>
+                            {idea.analysisSource === 'ai' ? '🤖 AI' : '📊 Heuristik'}
+                          </span>
+                        )}
+                        <span className="idea-date">
+                          {new Date(idea.createdAt).toLocaleDateString('tr-TR')}
+                        </span>
+                      </div>
                     </div>
                     <p className="idea-founder">Kurucu: {idea.founderName || 'Bilinmeyen'}</p>
                     <div className="idea-score">

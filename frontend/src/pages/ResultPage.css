@@ -21,10 +21,39 @@
   border-bottom: 2px solid #f0f0f0;
 }
 
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
 .result-header h1 {
   color: #333;
   font-size: 2rem;
   margin-bottom: 0.5rem;
+}
+
+.analysis-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.ai-badge {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.heuristic-badge {
+  background: #e9ecef;
+  color: #495057;
+  border: 1px solid #dee2e6;
 }
 
 .founder-name {

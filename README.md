@@ -1,84 +1,148 @@
-# Incubator Idea Analyzer
+# 🚀 Incubator Idea Analyzer
 
-Modern girişimcilik platformu için fikir analizi modülü, Lean Canvas builder ve mentor dashboard içeren mini uygulama.
+Modern girişimcilik ekosistemi için **AI destekli fikir analiz platformu**. Girişimcilerin fikirlerini objektif kriterlerle değerlendiren, Lean Canvas oluşturan ve mentor perspektifinden gelişim önerileri sunan kapsamlı bir analiz aracı.
 
-## 🎯 Özellikler
+---
 
-- **Fikir Analizi Formu**: 7 soruluk detaylı form ile girişim fikirlerini analiz etme
-- **Otomatik Skorlama**: 6 farklı kategoride (Problem Doğrulama, Pazar Olgunluğu, Rekabet, Farklılaşma, Teknik Fizibilite, Risk Belirsizliği) otomatik skor hesaplama
-- **Radar Chart Görselleştirme**: Skorların interaktif radar chart ile görselleştirilmesi
-- **Lean Canvas**: Otomatik oluşturulan 9 kutulu Lean Canvas yapısı
-- **Mentor Dashboard**: Fikir gelişimini takip etme, kör nokta tespiti ve karşılaştırmalı analiz
-- **Insight Kartları**: Düşük ve yüksek skorlar için otomatik öneriler
+## ✨ Öne Çıkan Özellikler
 
-## 🏗️ Proje Yapısı
+### 🤖 **AI-Powered Analysis**
+- **LLM Tabanlı Skorlama**: Groq API (Llama 3) ile 6 kategoride detaylı analiz
+- **Otomatik Lean Canvas**: AI tarafından üretilen profesyonel Lean Canvas taslağı
+- **Akıllı Fallback**: AI kullanılamazsa heuristic yöntemlere otomatik geçiş
+- **Analiz Kaynağı Takibi**: Her analizde AI veya heuristic kullanımı işaretlenir
+
+### 📊 **Kapsamlı Görselleştirme**
+- **Radar Chart**: 6 boyutlu interaktif skor analizi
+- **Bar Chart**: İlk ve son analiz karşılaştırması
+- **Lean Canvas Grid**: 9 kutulu profesyonel canvas yapısı
+- **Insight Kartları**: Otomatik öneri ve uyarı sistemi
+
+### 👥 **Role-Based Experience**
+- **Founder View**: Girişimci perspektifinden analiz ve sonuçlar
+- **Mentor Dashboard**: Gelişim takibi, kör nokta tespiti, karşılaştırmalı analiz
+- **Fake Session Management**: LocalStorage tabanlı basit rol yönetimi (login karmaşıklığı olmadan)
+
+### 🎯 **Analiz Kategorileri**
+1. **Problem Doğrulama**: Problem tanımının netliği ve gerçekçiliği
+2. **Pazar Olgunluğu**: Hedef müşteri segmentinin netliği
+3. **Rekabet**: Alternatiflerin farkındalığı ve rekabet analizi
+4. **Farklılaşma**: Çözümün benzersiz değer önerisi
+5. **Teknik Fizibilite**: Teknoloji yığını uygunluğu
+6. **Risk Belirsizliği**: Risk farkındalığı ve yönetimi
+
+---
+
+## 🏗️ Teknoloji Stack
+
+### Backend
+- **Node.js** + **Express.js** - RESTful API
+- **MongoDB** + **Mongoose** - NoSQL veritabanı
+- **Groq API** (Llama 3) - AI analiz motoru
+- **Axios** - HTTP client (AI API çağrıları için)
+- **dotenv** - Ortam değişkenleri yönetimi
+
+### Frontend
+- **React 19** - Modern UI framework
+- **React Router v7** - Client-side routing
+- **Vite** - Hızlı build tool ve dev server
+- **Chart.js** + **react-chartjs-2** - Veri görselleştirme
+- **Axios** - API iletişimi
+- **Context API** - Role-based state management
+
+### AI & Analytics
+- **Groq API** - Yüksek performanslı LLM servisi
+- **Llama 3 70B** - Büyük dil modeli
+- **Heuristic Fallback** - AI yedekleme sistemi
+
+---
+
+## 📁 Proje Yapısı
 
 ```
 incubator-idea-analyzer/
-├── backend/                 # Node.js + Express backend
+├── backend/
 │   ├── config/
-│   │   └── db.js           # MongoDB bağlantı yapılandırması
+│   │   └── db.js                    # MongoDB bağlantı yapılandırması
 │   ├── models/
-│   │   └── Idea.js         # Idea model şeması
+│   │   └── Idea.js                  # MongoDB şema (scores, leanCanvas, aiMentorInsights)
 │   ├── routes/
-│   │   └── ideas.js        # API route'ları
+│   │   └── ideas.js                 # REST API endpoints
 │   ├── services/
-│   │   ├── insightService.js      # Skor hesaplama servisi
-│   │   └── leanCanvasService.js   # Lean Canvas oluşturma servisi
-│   ├── server.js           # Express server
+│   │   ├── aiIdeaAnalysisService.js # AI analiz servisi (Groq API)
+│   │   ├── insightService.js        # Heuristic skor hesaplama (fallback)
+│   │   └── leanCanvasService.js     # Heuristic Lean Canvas (fallback)
+│   ├── server.js                    # Express server + dotenv
+│   ├── .env                         # Ortam değişkenleri (AI config)
 │   └── package.json
 │
-└── frontend/               # React + Vite frontend
+└── frontend/
     ├── src/
     │   ├── api/
-    │   │   └── client.js   # Axios API client
+    │   │   └── client.js            # Axios API client
+    │   ├── context/
+    │   │   └── RoleContext.jsx      # Role-based session management
+    │   ├── layouts/
+    │   │   └── DashboardLayout.jsx # Ana layout + header
     │   ├── pages/
-    │   │   ├── IdeaFormPage.jsx        # Ana form sayfası
-    │   │   ├── ResultPage.jsx          # Sonuç sayfası (Radar Chart + Lean Canvas)
+    │   │   ├── LandingPage.jsx     # Ana sayfa (rol seçimi)
+    │   │   ├── IdeaFormPage.jsx    # 7 soruluk analiz formu
+    │   │   ├── ResultPage.jsx      # Sonuç sayfası (Radar + Lean Canvas)
     │   │   └── MentorDashboardPage.jsx # Mentor dashboard
-    │   ├── App.jsx         # Ana uygulama + routing
-    │   ├── main.jsx        # React entry point
-    │   └── index.css       # Global stiller
+    │   ├── router.jsx               # React Router yapılandırması
+    │   ├── App.jsx                  # Ana uygulama
+    │   └── main.jsx                  # React entry point
     └── package.json
 ```
 
-## 🚀 Kurulum
+---
+
+## 🚀 Hızlı Başlangıç
 
 ### Ön Gereksinimler
 
-- **Node.js** (v14 veya üzeri)
+- **Node.js** v18+ 
 - **npm** veya **yarn**
-- **MongoDB** (v4 veya üzeri) - Veritabanı sunucusu
+- **MongoDB** (yerel veya cloud)
+- **Groq API Key** (opsiyonel - AI için)
 
-### Adım 1: MongoDB'yi Başlatın
-
-MongoDB'nin çalıştığından emin olun:
+### 1️⃣ MongoDB Kurulumu
 
 ```bash
-# Windows'ta MongoDB servisini başlatın
-# veya Docker kullanarak:
-docker run -d -p 27017:27017 --name mongodb mongo
+# Yerel MongoDB
+# Windows: MongoDB servisini başlatın
+# macOS/Linux: brew install mongodb-community veya apt-get install mongodb
+
+# Veya Docker ile:
+docker run -d -p 27017:27017 --name mongodb mongo:latest
 ```
 
-### Adım 2: Backend Kurulumu
+### 2️⃣ Backend Kurulumu
 
 ```bash
 cd backend
 npm install
+
+# .env dosyası oluşturun
+cat > .env << EOF
+AI_ENABLED=true
+AI_API_URL=https://api.groq.com/openai/v1/chat/completions
+AI_API_KEY=gsk-your-groq-api-key-here
+AI_MODEL=llama3-70b-8192
+EOF
+
+# Server'ı başlatın
 npm start
 ```
 
-Backend `http://localhost:4000` üzerinde çalışacaktır.
-
-**Başarılı başlatma çıktısı:**
+**Başarılı başlatma:**
 ```
 Server is running on port 4000
-MongoDB Connected: localhost
+✅ AI Analysis is ENABLED
+   Model: llama3-70b-8192
 ```
 
-### Adım 3: Frontend Kurulumu
-
-Yeni bir terminal penceresi açın:
+### 3️⃣ Frontend Kurulumu
 
 ```bash
 cd frontend
@@ -86,172 +150,292 @@ npm install
 npm run dev
 ```
 
-Frontend genellikle `http://localhost:5173` üzerinde çalışacaktır.
+Frontend `http://localhost:5173` üzerinde çalışacaktır.
 
-**Başarılı başlatma çıktısı:**
-```
-  VITE vX.X.X  ready in XXX ms
+### 4️⃣ Tarayıcıda Açın
 
-  ➜  Local:   http://localhost:5173/
-```
-
-### Adım 4: Tarayıcıda Açın
-
-Tarayıcınızda `http://localhost:5173` adresine gidin.
-
-## 📖 Kullanım
-
-### 1. Fikir Analizi Oluşturma
-
-1. Ana sayfada (`/`) formu doldurun:
-   - Kurucu Adı
-   - Fikir Başlığı
-   - 7 soru (Problem, Hedef Müşteri, Mevcut Alternatifler, Çözüm, Gelir Modeli, Teknoloji Yığını, En Büyük Riskler)
-2. "Fikri Analiz Et" butonuna tıklayın
-3. Otomatik olarak sonuç sayfasına yönlendirilirsiniz
-
-### 2. Sonuç Sayfası (`/result/:id`)
-
-Sonuç sayfasında görebilecekleriniz:
-- **Genel Skor**: 0-100 arası ortalama skor
-- **Radar Chart**: 6 kategoride detaylı skor görselleştirmesi
-- **Insight Kartları**: Düşük/yüksek skorlar için otomatik öneriler
-- **Lean Canvas**: 9 kutulu otomatik oluşturulan Lean Canvas grid'i
-
-### 3. Mentor Dashboard (`/mentor`)
-
-Mentor dashboard'da:
-- **Genel Özet**: Toplam analiz sayısı, ilk/son skorlar, gelişim puanı
-- **Skor Karşılaştırması**: İlk ve son analiz arasındaki farkları gösteren bar chart
-- **Detaylı Skor Farkları**: Kategori bazında fark tablosu
-- **Kör Noktalar**: Skor <40 olan alanların listesi
-- **Tüm Fikirler**: Tüm analiz edilmiş fikirlerin listesi (tıklanabilir)
-
-## 🔧 Teknolojiler
-
-### Backend
-- **Node.js** + **Express.js**: RESTful API
-- **MongoDB** + **Mongoose**: Veritabanı ve ODM
-- **CORS**: Cross-origin resource sharing
-
-### Frontend
-- **React 19**: UI framework
-- **React Router**: Sayfa yönlendirme
-- **Vite**: Build tool ve dev server
-- **Chart.js** + **react-chartjs-2**: Grafik görselleştirme
-- **Axios**: HTTP client
-
-## 📡 API Endpoints
-
-### `GET /api/ideas`
-Tüm fikirleri listeler (oluşturulma tarihine göre sıralı).
-
-**Yanıt:**
-```json
-[
-  {
-    "_id": "...",
-    "founderName": "...",
-    "ideaTitle": "...",
-    "scores": { ... },
-    "leanCanvas": { ... },
-    "createdAt": "..."
-  }
-]
-```
-
-### `POST /api/ideas`
-Yeni bir fikir analizi oluşturur.
-
-**İstek:**
-```json
-{
-  "founderName": "John Doe",
-  "ideaTitle": "My Startup Idea",
-  "answers": {
-    "problem": "...",
-    "targetCustomer": "...",
-    "existingAlternatives": "...",
-    "solution": "...",
-    "revenueModel": "...",
-    "techStackThoughts": "...",
-    "biggestRisks": "..."
-  }
-}
-```
-
-**Yanıt:**
-```json
-{
-  "_id": "...",
-  "founderName": "John Doe",
-  "ideaTitle": "My Startup Idea",
-  "scores": {
-    "problemValidation": 75.5,
-    "marketMaturity": 60.0,
-    ...
-  },
-  "leanCanvas": { ... }
-}
-```
-
-### `GET /api/ideas/:id`
-Belirli bir fikri ID ile getirir.
-
-### `GET /health`
-Backend sağlık kontrolü.
-
-## 🧪 Test Senaryoları
-
-### End-to-End Test Akışı
-
-1. **Form → Result → Mentor Dashboard**
-   - Ana sayfada formu doldurun
-   - Sonuç sayfasında radar chart ve Lean Canvas'ı kontrol edin
-   - Mentor dashboard'da gelişimi görüntüleyin
-
-2. **Çoklu Fikir Analizi**
-   - Birden fazla fikir oluşturun
-   - Mentor dashboard'da ilk ve son analiz karşılaştırmasını kontrol edin
-   - Kör noktaların doğru tespit edildiğini doğrulayın
-
-3. **API Testleri**
-   ```bash
-   # Health check
-   curl http://localhost:4000/health
-   
-   # Tüm fikirleri listele
-   curl http://localhost:4000/api/ideas
-   
-   # Yeni fikir oluştur
-   curl -X POST http://localhost:4000/api/ideas \
-     -H "Content-Type: application/json" \
-     -d '{"founderName":"Test","ideaTitle":"Test","answers":{...}}'
-   ```
-
-## 🐛 Sorun Giderme
-
-### Backend bağlantı hatası
-- MongoDB'nin çalıştığından emin olun (`localhost:27017`)
-- Backend loglarını kontrol edin
-
-### Frontend'den backend'e bağlanamıyor
-- Backend'in `http://localhost:4000` üzerinde çalıştığını doğrulayın
-- CORS ayarlarını kontrol edin (`backend/server.js`)
-
-### Port çakışması
-- Backend: Port 4000
-- Frontend: Port 5173 (Vite varsayılan)
-- Portlar meşgulse, `.env` dosyası ile değiştirebilirsiniz
-
-## 📝 Lisans
-
-Bu proje eğitim amaçlı geliştirilmiştir.
-
-## 👨‍💻 Geliştirici
-
-Incubator Idea Analyzer - Girişimcilik Platformu
+`http://localhost:5173` adresine gidin ve uygulamayı kullanmaya başlayın!
 
 ---
 
-**Not**: Bu proje, girişimcilerin fikirlerini analiz etmek ve gelişimlerini takip etmek için tasarlanmıştır. Skorlar otomatik hesaplanır ve yalnızca rehberlik amaçlıdır.
+## 🎮 Kullanım Senaryoları
+
+### Senaryo 1: Girişimci - Fikir Analizi
+
+1. **Ana Sayfa** (`/`): "Fikrimi analiz etmek istiyorum" kartına tıklayın
+2. **Form Sayfası** (`/founder/idea`): 7 soruyu detaylı şekilde doldurun
+3. **Sonuç Sayfası** (`/result/:id`): 
+   - Genel skorunuzu görün
+   - Radar chart ile detaylı analiz
+   - AI tarafından oluşturulan Lean Canvas
+   - Güçlü/zayıf yönler için otomatik öneriler
+
+### Senaryo 2: Mentor - Gelişim Takibi
+
+1. **Ana Sayfa** (`/`): "Mentor dashboard'u görmek istiyorum" kartına tıklayın
+2. **Mentor Dashboard** (`/mentor`):
+   - Tüm fikirlerin genel özeti
+   - İlk vs son analiz karşılaştırması (bar chart)
+   - Kategori bazında detaylı skor farkları
+   - Kör nokta tespiti (skor <40 alanlar)
+   - Tüm fikirlerin listesi (tıklanabilir)
+
+### Senaryo 3: AI Analiz Testi
+
+```bash
+# Test endpoint'i ile AI'yı test edin
+curl -X POST http://localhost:4000/api/ideas/test-ai
+
+# Veya AI config kontrolü
+cd backend
+node check-ai-config.js
+```
+
+---
+
+## 🔌 API Endpoints
+
+### `POST /api/ideas`
+Yeni bir fikir analizi oluşturur. AI veya heuristic yöntemle skorlar ve Lean Canvas üretir.
+
+**Request:**
+```json
+{
+  "founderName": "Ahmet Yılmaz",
+  "ideaTitle": "AI Destekli Muhasebe Platformu",
+  "answers": {
+    "problem": "Küçük işletmeler için muhasebe süreçleri karmaşık...",
+    "targetCustomer": "KOBİ'ler, 5-50 çalışanlı şirketler...",
+    "existingAlternatives": "QuickBooks, Xero, Logo...",
+    "solution": "AI destekli bulut tabanlı platform...",
+    "revenueModel": "Aylık abonelik (SaaS)...",
+    "techStackThoughts": "Node.js, React, MongoDB...",
+    "biggestRisks": "Rekabet, müşteri edinme maliyetleri..."
+  }
+}
+```
+
+**Response:**
+```json
+{
+  "_id": "...",
+  "founderName": "Ahmet Yılmaz",
+  "ideaTitle": "AI Destekli Muhasebe Platformu",
+  "scores": {
+    "problemValidation": 75,
+    "marketMaturity": 70,
+    "competition": 65,
+    "differentiation": 80,
+    "techFeasibility": 75,
+    "riskUncertainty": 70
+  },
+  "leanCanvas": {
+    "problem": "...",
+    "solution": "...",
+    "uniqueValueProp": "...",
+    ...
+  },
+  "analysisSource": "ai"  // veya "heuristic"
+}
+```
+
+### `GET /api/ideas`
+Tüm fikirleri oluşturulma tarihine göre listeler (mentor dashboard için).
+
+### `GET /api/ideas/:id`
+Belirli bir fikrin detaylarını getirir (result page için).
+
+### `POST /api/ideas/test-ai`
+AI yapılandırmasını test eder (test verileri ile).
+
+### `GET /health`
+Backend sağlık kontrolü ve AI durumu.
+
+---
+
+## 🤖 AI Konfigürasyonu
+
+### Groq API Kurulumu
+
+1. **Groq API Key Alın**: https://console.groq.com/keys
+2. **`.env` Dosyasını Düzenleyin**:
+   ```env
+   AI_ENABLED=true
+   AI_API_URL=https://api.groq.com/openai/v1/chat/completions
+   AI_API_KEY=gsk-your-actual-groq-api-key
+   AI_MODEL=llama3-70b-8192
+   ```
+3. **Server'ı Yeniden Başlatın**
+
+### AI vs Heuristic
+
+- **AI Aktifse**: Groq API ile skorlar ve Lean Canvas üretilir → `analysisSource: "ai"`
+- **AI Yoksa/Devre Dışıysa**: Heuristic fonksiyonlar kullanılır → `analysisSource: "heuristic"`
+- **Frontend'de**: Her analizde kaynak badge'i gösterilir (🤖 AI Analizi / 📊 Heuristik Analiz)
+
+### Desteklenen Modeller
+
+- `llama3-70b-8192` (varsayılan - Groq)
+- `llama3-8b-8192` (Groq)
+- `gpt-4o-mini` (OpenAI - uyumlu)
+- `gpt-4o` (OpenAI - uyumlu)
+
+---
+
+## 🎨 Özellik Detayları
+
+### Role-Based Session Management
+
+- **LocalStorage Tabanlı**: Login karmaşıklığı olmadan basit rol yönetimi
+- **RoleContext**: React Context API ile global state
+- **Otomatik Persistence**: Sayfa yenilense bile rol korunur
+- **Rol Seçimi**: Landing page'de founder/mentor seçimi
+
+### AI Analysis Pipeline
+
+```
+User Input (Answers)
+    ↓
+AI Service (Groq API)
+    ↓
+[Success] → AI Scores + AI Lean Canvas
+    ↓
+[Failure] → Fallback to Heuristic
+    ↓
+MongoDB Save (with analysisSource flag)
+    ↓
+Frontend Display (with source badge)
+```
+
+### Mentor Dashboard Analytics
+
+- **Gelişim Metrikleri**: İlk vs son analiz karşılaştırması
+- **Kör Nokta Tespiti**: Skor <40 olan kategoriler
+- **Trend Analizi**: Bar chart ile görsel karşılaştırma
+- **Fikir Listesi**: Tüm analizlerin özet görünümü
+
+---
+
+## 🧪 Test Senaryoları
+
+### End-to-End Test
+
+1. **Form → Result → Dashboard Akışı**
+   ```bash
+   # 1. Ana sayfada "Fikrimi analiz etmek istiyorum" tıkla
+   # 2. Formu doldur ve gönder
+   # 3. Result page'de AI badge'ini kontrol et
+   # 4. Mentor dashboard'a git ve gelişimi gör
+   ```
+
+2. **AI Test**
+   ```bash
+   curl -X POST http://localhost:4000/api/ideas/test-ai
+   ```
+
+3. **Role Switching Test**
+   - Landing page'de founder seç → form görün
+   - Ana sayfaya dön → mentor seç → dashboard görün
+   - Sayfayı yenile → rol korunmalı
+
+---
+
+## 🐛 Sorun Giderme
+
+### AI Çalışmıyor
+
+1. **`.env` dosyasını kontrol edin**:
+   ```bash
+   cd backend
+   node check-ai-config.js
+   ```
+
+2. **Backend console loglarını inceleyin**:
+   - `AI Availability Check:` loglarına bakın
+   - Hata mesajlarını kontrol edin
+
+3. **API Key'i doğrulayın**:
+   - Groq console'dan key'inizin aktif olduğundan emin olun
+   - Key'in `gsk-` ile başladığından emin olun
+
+### MongoDB Bağlantı Hatası
+
+```bash
+# MongoDB'nin çalıştığını kontrol edin
+# Windows: Services → MongoDB
+# Linux/Mac: sudo systemctl status mongod
+
+# Veya Docker:
+docker ps | grep mongo
+```
+
+### Port Çakışması
+
+- **Backend**: Port 4000 (`.env` ile değiştirilebilir)
+- **Frontend**: Port 5173 (Vite varsayılan)
+
+---
+
+## 📊 Teknik Kararlar ve Mimari
+
+### Neden Groq API?
+
+- **Yüksek Performans**: Düşük latency, hızlı yanıt süreleri
+- **Maliyet Etkin**: OpenAI'ye göre daha uygun fiyatlandırma
+- **OpenAI Uyumlu**: Aynı API formatı, kolay geçiş imkanı
+- **Llama 3**: Açık kaynak, güçlü model
+
+### Fallback Mekanizması
+
+- **Güvenilirlik**: AI başarısız olsa bile sistem çalışmaya devam eder
+- **Şeffaflık**: Her analizde kullanılan yöntem işaretlenir
+- **Esneklik**: Ortam değişkenleri ile kolay kontrol
+
+### Role Management Yaklaşımı
+
+- **Basitlik**: Login sistemi karmaşıklığı olmadan UX gösterimi
+- **LocalStorage**: Sayfa yenilemelerinde rol korunur
+- **Context API**: React best practices ile state management
+
+---
+
+## 🎯 Mülakat İçin Öne Çıkanlar
+
+### Teknik Yetenekler
+
+✅ **Full-Stack Development**: Node.js + React  
+✅ **AI Integration**: LLM API entegrasyonu ve prompt engineering  
+✅ **Database Design**: MongoDB schema tasarımı  
+✅ **State Management**: Context API ile global state  
+✅ **Data Visualization**: Chart.js ile interaktif grafikler  
+✅ **Error Handling**: Fallback mekanizmaları ve hata yönetimi  
+✅ **API Design**: RESTful endpoint tasarımı  
+
+### Problem Çözme
+
+✅ **AI Fallback**: Sistemin sürekli çalışması için yedekleme  
+✅ **User Experience**: Role-based navigation ve session management  
+✅ **Performance**: Async/await, Promise.all ile optimize edilmiş API çağrıları  
+✅ **Code Quality**: Modüler servis yapısı, temiz kod prensipleri  
+
+---
+
+## 📝 Lisans
+
+Bu proje eğitim ve portföy amaçlı geliştirilmiştir.
+
+---
+
+## 👨‍💻 Geliştirici Notları
+
+Bu proje, modern web teknolojileri ve AI entegrasyonu ile girişimcilik ekosistemine değer katmayı hedeflemektedir. Kod yapısı modüler, bakımı kolay ve genişletilebilir şekilde tasarlanmıştır.
+
+**Özellikle Vurgulanan:**
+- AI-first yaklaşım (fallback ile güvenilirlik)
+- Role-based UX (login karmaşıklığı olmadan)
+- Görselleştirme odaklı veri sunumu
+- Mentor perspektifinden analitik yaklaşım
+
+---
+
+**🚀 Demo için**: Backend ve frontend'i başlatın, formu doldurun ve AI analizini deneyin!

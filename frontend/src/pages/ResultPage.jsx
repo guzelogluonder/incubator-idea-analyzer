@@ -174,7 +174,14 @@ function ResultPage() {
     <main className="result-page">
       <div className="result-container">
         <header className="result-header">
-          <h1>{idea.ideaTitle || 'Fikir Analizi'}</h1>
+          <div className="header-top">
+            <h1>{idea.ideaTitle || 'Fikir Analizi'}</h1>
+            {idea.analysisSource && (
+              <span className={`analysis-badge ${idea.analysisSource === 'ai' ? 'ai-badge' : 'heuristic-badge'}`}>
+                {idea.analysisSource === 'ai' ? '🤖 AI Analizi' : '📊 Heuristik Analiz'}
+              </span>
+            )}
+          </div>
           <p className="founder-name">Kurucu: {idea.founderName || 'Bilinmeyen'}</p>
         </header>
 

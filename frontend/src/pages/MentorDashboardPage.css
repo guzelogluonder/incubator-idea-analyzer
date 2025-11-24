@@ -275,6 +275,8 @@
   justify-content: space-between;
   align-items: start;
   margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .idea-header h3 {
@@ -284,11 +286,37 @@
   flex: 1;
 }
 
+.idea-header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
 .idea-date {
   color: #999;
   font-size: 0.85rem;
   white-space: nowrap;
-  margin-left: 1rem;
+}
+
+.analysis-badge-small {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.analysis-badge-small.ai-badge {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.2);
+}
+
+.analysis-badge-small.heuristic-badge {
+  background: #e9ecef;
+  color: #495057;
+  border: 1px solid #dee2e6;
 }
 
 .idea-founder {
