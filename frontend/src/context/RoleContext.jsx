@@ -7,7 +7,7 @@ const STORAGE_KEY = 'incubator-app-role';
 export const RoleProvider = ({ children }) => {
   const [role, setRoleState] = useState(null);
 
-  // İlk yüklemede localStorage'dan rolü oku
+  // Read role from localStorage on initial load
   useEffect(() => {
     const storedRole = localStorage.getItem(STORAGE_KEY);
     if (storedRole === 'founder' || storedRole === 'mentor') {
@@ -15,7 +15,7 @@ export const RoleProvider = ({ children }) => {
     }
   }, []);
 
-  // Rolü güncelle ve localStorage'a yaz
+  // Update role and write to localStorage
   const setRole = (newRole) => {
     if (newRole === 'founder' || newRole === 'mentor') {
       setRoleState(newRole);
@@ -23,7 +23,7 @@ export const RoleProvider = ({ children }) => {
     }
   };
 
-  // Rolü sıfırla ve localStorage'dan temizle
+  // Clear role and remove from localStorage
   const clearRole = () => {
     setRoleState(null);
     localStorage.removeItem(STORAGE_KEY);
